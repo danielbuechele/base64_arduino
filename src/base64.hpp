@@ -1,5 +1,5 @@
 /**
- * Base64 encoding and decoding of strings. Uses '+' for 62, '/' for 63, '=' for padding
+ * Base64 URL encoding and decoding of strings. Uses '-' for 62, '_/' for 63, '=' for padding
  */
 
 #ifndef BASE64_H_INCLUDED
@@ -85,10 +85,10 @@ unsigned char binary_to_base64(unsigned char v) {
   if(v < 62) return v - 4;
   
   // '+' is ascii 43 and base64 62
-  if(v == 62) return '+';
+  if(v == 62) return '-';
   
   // '/' is ascii 47 and base64 63
-  if(v == 63) return '/';
+  if(v == 63) return '_';
   
   return 64;
 }
@@ -104,10 +104,10 @@ unsigned char base64_to_binary(unsigned char c) {
   if('0' <= c && c <= '9') return c + 4;
   
   // '+' is ascii 43 and base64 62
-  if(c == '+') return 62;
+  if(c == '-') return 62;
   
   // '/' is ascii 47 and base64 63
-  if(c == '/') return 63;
+  if(c == '_') return 63;
   
   return 255;
 }
